@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿    <!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="css/base.css"> <!--初始化文件-->
 <link rel="stylesheet" href="css/menu.css"> <!--主样式-->
+<link href="css/jquery-ui.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -31,29 +32,17 @@
         </div>
         <div class="navBox">
             <ul>
-                <li>
-                    <h2 class="obtain">年<i></i></h2>
-                    <div class="secondary">
-                        
-                    </div>
+              <li>
+                    <h2 class="obtain">开始时间<i></i></h2>    
+                    <div class="secondary">              
+                    <h3><input type="text" id="from" name="from"></h3>
+                </div>  
                 </li>
                 <li>
-                    <h2 class="obtain">月<i></i></h2>
+                    <h2 class="obtain">结束时间<i></i></h2>
                     <div class="secondary">
-                       
-                    </div>
-                </li>
-                <li>
-                    <h2 class="obtain">周<i></i></h2>
-                    <div class="secondary">
-                       
-                    </div>
-                </li>
-                <li>
-                    <h2 class="obtain">日<i></i></h2>
-                    <div class="secondary">
-                       
-                    </div>
+                    <h3><input type="text" id="to" name="to"></h3>
+                </div>
                 </li>
                 <li>
                     <h2 class="obtain">输入人名查询<i></i></h2>
@@ -67,6 +56,27 @@
 </div>
 
 <script src="js/menu.js"></script> <!--控制js-->
-
+<script src="external/jquery/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+  </script>
 </body>
 </html>
